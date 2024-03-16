@@ -16,7 +16,7 @@ public class ClimberSubsystem extends SubsystemBase{
     private final RelativeEncoder climberEncoder1;
     private final RelativeEncoder climberEncoder2;
 
-    private boolean isRaised = false;
+    private boolean isRaised = true;
 
     public ClimberSubsystem(){
         // Motor objects, PID controllers, and encoders
@@ -57,16 +57,16 @@ public class ClimberSubsystem extends SubsystemBase{
         });
     }
 
-    public void raiseClimber(){
+    public void lowerClimber(){
         climberPIDController1.setReference(Constants.ClimberConstants.ROTATION_DISTANCE, CANSparkMax.ControlType.kPosition);
-        climberPIDController2.setReference(Constants.ClimberConstants.ROTATION_DISTANCE, CANSparkMax.ControlType.kPosition);
-        isRaised = true;
+        climberPIDController2.setReference(-Constants.ClimberConstants.ROTATION_DISTANCE, CANSparkMax.ControlType.kPosition);
+        isRaised = false;
     }
 
-    public void lowerClimber(){
+    public void raiseClimber(){
         climberPIDController1.setReference(0, CANSparkMax.ControlType.kPosition);
         climberPIDController2.setReference(0, CANSparkMax.ControlType.kPosition);
-        isRaised = false;
+        isRaised = true;
     }
 
     public boolean isRaised(){

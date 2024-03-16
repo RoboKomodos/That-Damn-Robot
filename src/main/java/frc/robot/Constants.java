@@ -41,17 +41,17 @@ public final class Constants {
     public static final int CAN_ID_CLIMBER_MOTOR_1 = 8;
     public static final int CAN_ID_CLIMBER_MOTOR_2 = 9;
 
-    public static final double CLIMBER_SPEED = 0.5;
+    public static final double CLIMBER_SPEED = 0.1;
 
-    public static final double ROTATION_DISTANCE = 5;
+    public static final double ROTATION_DISTANCE = 60;
 
-    public static final double CLIMBER_P = 0.1;
-    public static final double CLIMBER_I = 0.0001;
-    public static final double CLIMBER_D = 1.0;
+    public static final double CLIMBER_P = 0.05;
+    public static final double CLIMBER_I = 0.0000001;
+    public static final double CLIMBER_D = 0.000006;
     public static final double CLIMBER_IZONE = 0.0;
-    public static final double CLIMBER_FF = 0.0;
-    public static final double CLIMBER_MAX = 1.0;
-    public static final double CLIMBER_MIN = -1.0;
+    public static final double CLIMBER_FF = 0.000015;
+    public static final double CLIMBER_MAX = 0.5;
+    public static final double CLIMBER_MIN = -0.5;
 
   }
 }

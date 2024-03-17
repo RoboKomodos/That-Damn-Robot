@@ -18,6 +18,7 @@ import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ExampleCommand;
 // import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
+import frc.robot.subsystems.arm.ArmSubsystem;
 import frc.robot.subsystems.climbers.ClimberSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
@@ -33,8 +34,9 @@ public class RobotContainer {
   private final SwerveSubsystem drivebase = new SwerveSubsystem(new File(Filesystem.getDeployDirectory(), "swerve"));
   private final ClimberSubsystem climber = new ClimberSubsystem();
 
-  // Replace with CommandPS4Controller or CommandJoystick if needed
-   final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
+  private final ArmSubsystem arm = new ArmSubsystem();
+
+  final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -94,14 +96,21 @@ public class RobotContainer {
    */
   private void configureBindings() {
     // Schedule `ExampleCommand` when `exampleCondition` changes to `true`
-
+    // Swerve/Position Triggers
     m_driverController.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
-    m_driverController.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
-    m_driverController.b().whileTrue(
+    //m_driverController.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
+    /*m_driverController.b().whileTrue(
         Commands.deferredProxy(() -> drivebase.driveToPose(
                                    new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
-                              ));
+                              ));*/
+    // Climber Trigger
     m_driverController.y().onTrue(climber.activateClimber());
+
+    // Arm Triggers
+    m_driverController.rightTrigger().onTrue(arm.raiseArm());
+    m_driverController.rightTrigger().onFalse(arm.stopArm());
+    m_driverController.leftTrigger().onTrue(arm.lowerArm());
+    m_driverController.leftTrigger().onFalse(arm.stopArm());
   }
 
   /**

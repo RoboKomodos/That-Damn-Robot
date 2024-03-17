@@ -38,8 +38,8 @@ public final class Constants {
 
   }
   public static class ClimberConstants {
-    public static final int CAN_ID_CLIMBER_MOTOR_1 = 8;
-    public static final int CAN_ID_CLIMBER_MOTOR_2 = 9;
+    public static final int CAN_ID_CLIMBER_MOTOR_1 = 9;
+    public static final int CAN_ID_CLIMBER_MOTOR_2 = 10;
 
     public static final double CLIMBER_SPEED = 0.1;
 
@@ -53,5 +53,28 @@ public final class Constants {
     public static final double CLIMBER_MAX = 0.5;
     public static final double CLIMBER_MIN = -0.5;
 
+  }
+
+  public static class ArmConstants {
+    public static final int CAN_ID_ARM_MOTOR_L = 11;
+    public static final int CAN_ID_ARM_MOTOR_R = 12;
+
+    public static final double ARM_SPEED = 0.6;
+
+    public static final double ARM_P = 0;
+    public static final double ARM_I = 0;
+    public static final double ARM_D = 0;
+    public static final double ARM_IZONE = 0.0;
+    public static final double ARM_FF = 0.000015;
+    public static final double ARM_MAX = 0.5;
+    public static final double ARM_MIN = -0.5;
+
+    public static final double conversionFactor = 0.005;
+  }
+
+  public static class IntakeConstants{
+    public static final int CAN_ID_FlyWheel_MOTOR_T = 13;
+    public static final int CAN_ID_FlyWheel_MOTOR_B = 14;
+    public static final double FlyWheel_SPEED = 0.5;
   }
 }

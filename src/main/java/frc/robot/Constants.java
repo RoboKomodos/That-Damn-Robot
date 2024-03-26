@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.util.PIDConstants;
 import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.math.util.Units;
 import swervelib.math.Matter;
@@ -20,6 +21,11 @@ public final class Constants {
   public static final double ROBOT_MASS = (148 - 20.3) * 0.453592; // 32lbs * kg per pound
   public static final Matter CHASSIS    = new Matter(new Translation3d(0, 0, Units.inchesToMeters(8)), ROBOT_MASS);
   public static final double LOOP_TIME  = 0.13;
+
+  public static final class AutonConstants{
+    public static final PIDConstants TRANSLATION_PID = new PIDConstants(0.7, 0, 0);
+    public static final PIDConstants ANGLE_PID = new PIDConstants(0.4, 0, 0.01);
+  }
 
 
   public static final class DrivebaseConstants {
@@ -43,7 +49,7 @@ public final class Constants {
 
     public static final double CLIMBER_SPEED = 0.1;
 
-    public static final double ROTATION_DISTANCE = 60;
+    public static final double ROTATION_DISTANCE = 75;
 
     public static final double CLIMBER_P = 0.05;
     public static final double CLIMBER_I = 0.0000001;
@@ -59,7 +65,8 @@ public final class Constants {
     public static final int CAN_ID_ARM_MOTOR_L = 11;
     public static final int CAN_ID_ARM_MOTOR_R = 12;
 
-    public static final double ARM_SPEED = 0.6;
+    /**Arm speed Percent [-1 , 1]*/
+    public static final double ARM_SPEED = 0.3;
 
     public static final double ARM_P = 0;
     public static final double ARM_I = 0;
@@ -69,12 +76,28 @@ public final class Constants {
     public static final double ARM_MAX = 0.5;
     public static final double ARM_MIN = -0.5;
 
+    /**Conversion Factor for Number of Arm Rotations to Neo Rotations (200 Neo Rotations Needed)*/
     public static final double conversionFactor = 0.005;
   }
 
   public static class IntakeConstants{
-    public static final int CAN_ID_FlyWheel_MOTOR_T = 13;
-    public static final int CAN_ID_FlyWheel_MOTOR_B = 14;
-    public static final double FlyWheel_SPEED = 0.5;
+    public static final int CAN_ID_FLYWHEEL_MOTOR_T = 13;
+    public static final int CAN_ID_FLYWHEEL_MOTOR_B = 14;
+    public static final int CAN_ID_INTAKE_MOTOR = 15;
+
+    public static final double FLYWHEEL_P = 0.3;
+    public static final double FLYWHEEL_I = 0.0;
+    public static final double FLYWHEEL_D = 0.0;
+    public static final double FLYWHEEL_IZONE = 0.0;
+    public static final double FLYWHEEL_FF = 0.0;
+    public static final double FLYWHEEL_MAX = 0.0;
+    public static final double FLYWHEEL_MIN = 0.0;
+
+    /**Flywheel Speed Percent [-1 , 1]*/
+    public static final double FLYWHEEL_SPEED = 1;
+
+    public static final double INTAKE_MAX_VOLTAGE = 12;
+
+
   }
 }

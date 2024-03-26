@@ -1,5 +1,6 @@
 package frc.robot.subsystems.climbers;
 
+import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
@@ -44,6 +45,22 @@ public class ClimberSubsystem extends SubsystemBase{
         climberPIDController2.setFF(Constants.ClimberConstants.CLIMBER_FF);
         climberPIDController2.setOutputRange(Constants.ClimberConstants.CLIMBER_MIN, Constants.ClimberConstants.CLIMBER_MAX);
 
+        climberMotor1.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus0, 20);
+        climberMotor1.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus1, 40);
+        climberMotor1.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus2, 40);
+        climberMotor1.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus3, 100);
+        climberMotor1.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus4, 20);
+        climberMotor1.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus5, 400);
+        climberMotor1.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus6, 400);
+
+        climberMotor2.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus0, 20);
+        climberMotor2.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus1, 40);
+        climberMotor2.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus2, 40);
+        climberMotor2.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus3, 100);
+        climberMotor2.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus4, 20);
+        climberMotor2.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus5, 400);
+        climberMotor2.setPeriodicFramePeriod(CANSparkLowLevel.PeriodicFrame.kStatus6, 400);
+
 
     }
 
@@ -58,8 +75,8 @@ public class ClimberSubsystem extends SubsystemBase{
     }
 
     public void lowerClimber(){
-        climberPIDController1.setReference(Constants.ClimberConstants.ROTATION_DISTANCE, CANSparkMax.ControlType.kPosition);
-        climberPIDController2.setReference(-Constants.ClimberConstants.ROTATION_DISTANCE, CANSparkMax.ControlType.kPosition);
+        climberPIDController1.setReference(-Constants.ClimberConstants.ROTATION_DISTANCE, CANSparkMax.ControlType.kPosition);
+        climberPIDController2.setReference(Constants.ClimberConstants.ROTATION_DISTANCE, CANSparkMax.ControlType.kPosition);
         isRaised = false;
     }
 

@@ -20,6 +20,7 @@ import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
 import frc.robot.subsystems.arm.ArmSubsystem;
 import frc.robot.subsystems.climbers.ClimberSubsystem;
+import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import java.io.File;
 
@@ -35,6 +36,8 @@ public class RobotContainer {
   private final ClimberSubsystem climber = new ClimberSubsystem();
 
   private final ArmSubsystem arm = new ArmSubsystem();
+
+  private final IntakeSubsystem intake = new IntakeSubsystem();
 
   final CommandXboxController m_driverController = new CommandXboxController(OperatorConstants.kDriverControllerPort);
 
@@ -62,8 +65,8 @@ public class RobotContainer {
     Command driveFieldOrientedDirectAngle = drivebase.driveCommand(
         () -> MathUtil.applyDeadband(m_driverController.getLeftY(), OperatorConstants.LEFT_Y_DEADBAND),
         () -> MathUtil.applyDeadband(m_driverController.getLeftX(), OperatorConstants.LEFT_X_DEADBAND),
-        () -> m_driverController.getRightX(),
-        () -> m_driverController.getRightY());
+        () -> -m_driverController.getRightX(),
+        () -> -m_driverController.getRightY());
 
     // Applies deadbands and inverts controls because joysticks
     // are back-right positive while robot
@@ -111,6 +114,9 @@ public class RobotContainer {
     m_driverController.rightTrigger().onFalse(arm.stopArm());
     m_driverController.leftTrigger().onTrue(arm.lowerArm());
     m_driverController.leftTrigger().onFalse(arm.stopArm());
+
+    // Intake Triggers
+    m_driverController.b().onTrue(intake.toggleFlyWheel());
   }
 
   /**

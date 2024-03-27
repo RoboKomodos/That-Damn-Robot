@@ -15,13 +15,16 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.arm.MoveArmCmd;
+import frc.robot.commands.climber.ToggleClimberCmd;
 // import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
-import frc.robot.subsystems.arm.ArmSubsystem;
-import frc.robot.subsystems.climbers.ClimberSubsystem;
 import frc.robot.subsystems.intake.IntakeSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
+import frc.robot.utils.Direction;
+
 import java.io.File;
 
 /**
@@ -102,18 +105,22 @@ public class RobotContainer {
     // Swerve/Position Triggers
     m_driverController.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
     //m_driverController.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
-    /*m_driverController.b().whileTrue(
+    m_driverController.b().whileTrue(
         Commands.deferredProxy(() -> drivebase.driveToPose(
                                    new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
-                              ));*/
+                              ));
+                              
     // Climber Trigger
-    m_driverController.y().onTrue(climber.activateClimber());
+    //m_driverController.y().onTrue(climber.activateClimber());
+    m_driverController.y().onTrue(new ToggleClimberCmd(climber));
 
     // Arm Triggers
-    m_driverController.rightTrigger().onTrue(arm.raiseArm());
-    m_driverController.rightTrigger().onFalse(arm.stopArm());
-    m_driverController.leftTrigger().onTrue(arm.lowerArm());
-    m_driverController.leftTrigger().onFalse(arm.stopArm());
+    // m_driverController.rightTrigger().onTrue(arm.raiseArm());
+    // m_driverController.rightTrigger().onFalse(arm.stopArm());
+    // m_driverController.leftTrigger().onTrue(arm.lowerArm());
+    // m_driverController.leftTrigger().onFalse(arm.stopArm());
+    m_driverController.rightTrigger().onTrue(new MoveArmCmd(arm, Direction.UP));
+    m_driverController.leftTrigger().onTrue(new MoveArmCmd(arm, Direction.DOWN));
 
     // Intake Triggers
     m_driverController.b().onTrue(intake.toggleFlyWheel());

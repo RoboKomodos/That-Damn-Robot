@@ -11,7 +11,7 @@ public class MoveClimberCmd extends Command {
     private final Direction direction;
 
 	/**
-	 * Creates a new Arm Raise Command.
+	 * Creates a new Move Climber Command.
 	 *
 	 * @param subsystem The arm subsystem used by this command.
 	 * @param direction The direction the arm will move.

@@ -57,7 +57,7 @@ public class ArmSubsystem extends SubsystemBase{
     }
 
     // Set arm position based on an angle
-    public void setPosition(double angle){
+    public void moveArm(double angle){
         armPIDControllerL.setReference(angle/360.0 * Constants.ArmConstants.conversionFactor, CANSparkMax.ControlType.kPosition);
         armPIDControllerR.setReference(angle/360.0 * Constants.ArmConstants.conversionFactor, CANSparkMax.ControlType.kPosition);
     }

@@ -1,20 +1,20 @@
-package frc.robot.commands.climber;
+package frc.robot.commands.intake;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.ClimberSubsystem;
-import frc.robot.utils.Direction;
+import frc.robot.Constants;
+import frc.robot.subsystems.IntakeSubsystem;
 
-public class ToggleClimberCmd extends Command {
+public class ToggleIntakeCmd extends Command {
 	@SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-	private final ClimberSubsystem climber;
+	private final IntakeSubsystem intake;
 
 	/**
-	 * Creates a new Toggle Climber Command.
+	 * Creates a new Toggle Intake Command.
 	 *
 	 * @param subsystem The arm subsystem used by this command.
 	 */
-	public ToggleClimberCmd(ClimberSubsystem subsystem) {
-		climber = subsystem;
+	public ToggleIntakeCmd(IntakeSubsystem subsystem) {
+		intake = subsystem;
 		// Use addRequirements() here to declare subsystem dependencies.
 		addRequirements(subsystem);
 	}
@@ -22,8 +22,11 @@ public class ToggleClimberCmd extends Command {
 	// Called when the command is initially scheduled.
 	@Override
 	public void initialize() {
-		// Call toggle once
-		climber.toggleClimber();
+	    if(intake.getIntakeVoltage() == 0.0){
+            intake.setIntakeVoltage(Constants.IntakeConstants.INTAKE_MAX_VOLTAGE);
+        } else {
+            intake.setIntakeVoltage(0.0);
+        }
 	}
 
 	// Called every time the scheduler runs while the command is scheduled.

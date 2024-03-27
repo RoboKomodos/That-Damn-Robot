@@ -16,7 +16,7 @@ public class MoveArmCmd extends Command {
 	private final Direction direction;
 
 	/**
-	 * Creates a new Arm Raise Command.
+	 * Creates a new Move Arm Command.
 	 *
 	 * @param subsystem The arm subsystem used by this command.
 	 * @param direction The direction the arm will move.

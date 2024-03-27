@@ -17,10 +17,11 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.arm.MoveArmCmd;
 import frc.robot.commands.climber.ToggleClimberCmd;
+import frc.robot.commands.intake.ToggleIntakeCmd;
 // import frc.robot.commands.swervedrive.drivebase.AbsoluteDrive;
 import frc.robot.commands.swervedrive.drivebase.AbsoluteDriveAdv;
-import frc.robot.subsystems.intake.IntakeSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.ArmSubsystem;
 import frc.robot.subsystems.swervedrive.SwerveSubsystem;
 import frc.robot.utils.Direction;
@@ -109,7 +110,7 @@ public class RobotContainer {
         Commands.deferredProxy(() -> drivebase.driveToPose(
                                    new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
                               ));
-                              
+
     // Climber Trigger
     //m_driverController.y().onTrue(climber.activateClimber());
     m_driverController.y().onTrue(new ToggleClimberCmd(climber));
@@ -123,7 +124,8 @@ public class RobotContainer {
     m_driverController.leftTrigger().onTrue(new MoveArmCmd(arm, Direction.DOWN));
 
     // Intake Triggers
-    m_driverController.b().onTrue(intake.toggleFlyWheel());
+    // m_driverController.b().onTrue(intake.toggleFlyWheel());
+    m_driverController.b().onTrue(new ToggleIntakeCmd(intake));
   }
 
   /**

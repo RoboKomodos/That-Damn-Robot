@@ -1,4 +1,4 @@
-package frc.robot.subsystems.intake;
+package frc.robot.subsystems.old.intake;
 
 import com.revrobotics.CANSparkLowLevel;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

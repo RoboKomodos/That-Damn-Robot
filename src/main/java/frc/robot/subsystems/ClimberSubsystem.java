@@ -65,7 +65,7 @@ public class ClimberSubsystem extends SubsystemBase{
 
     }
 
-    public toggleClimber(){
+    public void toggleClimber(){
         if(isRaised){
             lowerClimber();
         } else {

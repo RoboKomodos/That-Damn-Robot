@@ -68,7 +68,7 @@ public final class Constants {
     /**Arm speed Percent [-1 , 1]*/
     public static final double ARM_SPEED = 0.3;
 
-    public static final double ARM_P = 0;
+    public static final double ARM_P = 0.001;
     public static final double ARM_I = 0;
     public static final double ARM_D = 0;
     public static final double ARM_IZONE = 0.0;
@@ -94,7 +94,7 @@ public final class Constants {
     public static final double FLYWHEEL_MIN = 0.0;
 
     /**Flywheel Speed Percent [-1 , 1]*/
-    public static final double FLYWHEEL_SPEED = 1;
+    public static final double FLYWHEEL_SPEED = 0.1;
 
     public static final double INTAKE_MAX_VOLTAGE = 12;
 

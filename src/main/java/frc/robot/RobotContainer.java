@@ -102,10 +102,10 @@ public class RobotContainer {
     // Swerve/Position Triggers
     m_driverController.a().onTrue((Commands.runOnce(drivebase::zeroGyro)));
     //m_driverController.x().onTrue(Commands.runOnce(drivebase::addFakeVisionReading));
-    m_driverController.b().whileTrue(
-        Commands.deferredProxy(() -> drivebase.driveToPose(
-                                   new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
-                              ));
+//    m_driverController.b().whileTrue(
+//        Commands.deferredProxy(() -> drivebase.driveToPose(
+//                                   new Pose2d(new Translation2d(4, 4), Rotation2d.fromDegrees(0)))
+//                              ));
     // Climber Trigger
     m_driverController.y().onTrue(climber.activateClimber());
 
@@ -116,7 +116,8 @@ public class RobotContainer {
     m_driverController.leftTrigger().onFalse(arm.stopArm());
 
     // Intake Triggers
-//    m_driverController.b().onTrue(intake.toggleFlyWheel());
+    m_driverController.b().onTrue(intake.toggleFlyWheel());
+    m_driverController.x().whileTrue(arm.setArmPosition(0.6));
   }
 
   /**
